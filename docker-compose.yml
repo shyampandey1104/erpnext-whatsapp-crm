@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  whatsapp-crm-gateway:
+    build: .
+    container_name: erpnext-whatsapp-crm
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - ERPNEXT_URL=http://frappe-web:8000
+      - ERPNEXT_API_KEY=${ERPNEXT_API_KEY}
+      - ERPNEXT_API_SECRET=${ERPNEXT_API_SECRET}
+      - WHATSAPP_TOKEN=${WHATSAPP_TOKEN}
+      - WHATSAPP_PHONE_NUMBER_ID=${WHATSAPP_PHONE_NUMBER_ID}
+      - WHATSAPP_VERIFY_TOKEN=${WHATSAPP_VERIFY_TOKEN}
+    env_file:
+      - .env
